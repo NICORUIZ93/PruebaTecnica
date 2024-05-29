@@ -3,12 +3,7 @@ package com.pruebatecnica.backend.controllers;
 import com.pruebatecnica.backend.models.Breed;
 import com.pruebatecnica.backend.services.CatService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 import static com.pruebatecnica.backend.constans.CoreRouter.ThecatAPI.*;
 
@@ -36,8 +31,8 @@ public class CatApiController {
     }
 
     @GetMapping(SEARCH_BREEDS)
-    public List<Breed> searchBreeds(@PathVariable String searchBreed) {
-        log.info("CatApiController::searchBreeds - searchBreed: [{}]", searchBreed);
-        return catService.searchBreeds(searchBreed);
+    public Breed[] searchBreeds(@RequestParam String q, @RequestParam(defaultValue = "1") int attachImage) {
+        log.info("CatApiController::searchBreeds  attach_image: [{}]- attach_image: [{}]", attachImage);
+        return catService.searchBreeds(q, attachImage);
     }
 }
