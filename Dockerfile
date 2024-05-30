@@ -1,11 +1,3 @@
-FROM openjdk:17-slim-bullseye AS builder
-WORKDIR /app
-COPY gradlew .
-COPY gradle gradle
-COPY build.gradle .
-COPY src src
-RUN ./gradlew build
-
 FROM openjdk:17-slim-bullseye
 VOLUME /tmp
 COPY build/libs/Backend-0.0.1-SNAPSHOT.jar /app/app.jar
